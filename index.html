@@ -9,40 +9,49 @@
 :root{--bg:#080d18;--panel:#111b2d;--blue:#168bff;--text:#f3f7ff;--muted:#9cabc2}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif}
-header{padding:22px 15px;text-align:center;background:linear-gradient(130deg,#071a35,#102e60);border-bottom:2px solid var(--blue)}
-.logo{font-size:clamp(22px,6vw,32px);font-weight:900;color:#45aaff}
+header{text-align:center;padding:23px 12px;background:linear-gradient(130deg,#071a35,#102e60);border-bottom:2px solid var(--blue)}
+.logo{font-size:clamp(23px,6vw,32px);font-weight:900;color:#45aaff}
 header p{font-size:12px;color:#c3d8f5}
-nav{display:flex;gap:8px;justify-content:center;padding:12px;flex-wrap:wrap}
-button,.btn{border:0;border-radius:9px;padding:11px 14px;background:var(--blue);color:white;font-weight:bold;cursor:pointer;text-decoration:none;font-size:14px}
+nav{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;padding:12px}
+button,.btn{border:0;border-radius:9px;padding:11px 13px;background:var(--blue);color:white;font-weight:bold;cursor:pointer;text-decoration:none;font-size:14px}
 nav button{background:#17243a}
 nav button.active{background:var(--blue)}
-main{max-width:850px;margin:auto;padding:12px}
-h2{font-size:20px;margin-top:22px}
-.search{width:100%;padding:13px;border-radius:10px;border:1px solid #30435e;background:#101a2b;color:white;font-size:16px}
-.card{background:var(--panel);border:1px solid #223550;border-radius:13px;padding:14px;margin:12px 0}
-.card h3{margin:5px 0 10px;font-size:17px;overflow-wrap:anywhere}
+main{max-width:900px;margin:auto;padding:12px}
+.search,input,select,textarea{width:100%;padding:13px;border-radius:9px;border:1px solid #30435e;background:#0b1322;color:white;font-size:15px}
+h2{font-size:20px;margin:23px 0 12px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.card{background:var(--panel);border:1px solid #223550;border-radius:13px;overflow:hidden;min-width:0}
+.thumb{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:#17243a}
+.cardbody{padding:12px}
 .tag{font-size:11px;color:#70baff;font-weight:bold}
-.desc{color:var(--muted);font-size:13px;line-height:1.6}
-.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.card h3{font-size:16px;margin:8px 0;overflow-wrap:anywhere}
+.desc{font-size:13px;color:var(--muted);line-height:1.5}
+.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
 .secondary{background:#263650}
-form{display:grid;gap:10px}
-input,select,textarea{width:100%;padding:12px;border:1px solid #30435e;border-radius:8px;background:#0b1322;color:white;font-size:15px}
+.notice{background:#102440;border-left:3px solid var(--blue);padding:12px;border-radius:7px;font-size:13px;line-height:1.6;margin:12px 0}
 .hidden{display:none!important}
+form{display:grid;gap:10px}
+.playerbox{background:#000;border:1px solid #263650;border-radius:12px;overflow:hidden;margin:12px 0}
+.playerbox video,.playerbox iframe{width:100%;aspect-ratio:16/9;display:block;border:0;background:#000}
+.playerinfo{padding:12px}
+.empty{color:var(--muted);padding:20px 0;text-align:center}
 footer{text-align:center;color:var(--muted);padding:25px 12px;font-size:12px}
-.notice{background:#102440;border-left:3px solid var(--blue);padding:12px;border-radius:6px;font-size:13px;line-height:1.6}
+@media(min-width:650px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:360px){.grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <header>
   <div class="logo">𝙲𝚁𝙸𝙲 𝚉𝙾𝙽𝙴 7𝚃5</div>
-  <p>CRICKET CLIPS • MATCH LINKS • HIGHLIGHTS</p>
+  <p>CRICKET CLIPS • VIDEO PLAYER • LIVE MATCH</p>
 </header>
 
 <nav>
   <button class="active" data-page="all">HOME</button>
-  <button data-page="clips">VIDEO CLIPS</button>
-  <button data-page="live">LIVE MATCH</button>
-  <button data-page="add">ADD LINK</button>
+  <button data-page="clips">🎬 CLIPS</button>
+  <button data-page="live">🔴 LIVE MATCH</button>
+  <button data-page="add">➕ ADD VIDEO</button>
 </nav>
 
 <main>
+  <div id="playerArea" class="hidden"></div>
