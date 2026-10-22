@@ -4,43 +4,131 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#080d18">
-<title>𝙲𝚁𝙸𝙲 𝚉𝙾𝙽𝙴 7𝚃5</title>
+<title>CRIC ZONE 7T5</title>
+
 <style>
-:root{--bg:#080d18;--panel:#111b2d;--blue:#168bff;--text:#f3f7ff;--muted:#9cabc2}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif}
-header{text-align:center;padding:23px 12px;background:linear-gradient(130deg,#071a35,#102e60);border-bottom:2px solid var(--blue)}
-.logo{font-size:clamp(23px,6vw,32px);font-weight:900;color:#45aaff}
-header p{font-size:12px;color:#c3d8f5}
-nav{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;padding:12px}
-button,.btn{border:0;border-radius:9px;padding:11px 13px;background:var(--blue);color:white;font-weight:bold;cursor:pointer;text-decoration:none;font-size:14px}
-nav button{background:#17243a}
-nav button.active{background:var(--blue)}
-main{max-width:900px;margin:auto;padding:12px}
-.search,input,select,textarea{width:100%;padding:13px;border-radius:9px;border:1px solid #30435e;background:#0b1322;color:white;font-size:15px}
-h2{font-size:20px;margin:23px 0 12px}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.card{background:var(--panel);border:1px solid #223550;border-radius:13px;overflow:hidden;min-width:0}
-.thumb{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:#17243a}
-.cardbody{padding:12px}
-.tag{font-size:11px;color:#70baff;font-weight:bold}
-.card h3{font-size:16px;margin:8px 0;overflow-wrap:anywhere}
-.desc{font-size:13px;color:var(--muted);line-height:1.5}
-.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
-.secondary{background:#263650}
-.notice{background:#102440;border-left:3px solid var(--blue);padding:12px;border-radius:7px;font-size:13px;line-height:1.6;margin:12px 0}
-.hidden{display:none!important}
-form{display:grid;gap:10px}
-.playerbox{background:#000;border:1px solid #263650;border-radius:12px;overflow:hidden;margin:12px 0}
-.playerbox video,.playerbox iframe{width:100%;aspect-ratio:16/9;display:block;border:0;background:#000}
-.playerinfo{padding:12px}
-.empty{color:var(--muted);padding:20px 0;text-align:center}
-footer{text-align:center;color:var(--muted);padding:25px 12px;font-size:12px}
-@media(min-width:650px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media(max-width:360px){.grid{grid-template-columns:1fr}}
+:root {
+  --bg:#080d18;
+  --panel:#111b2d;
+  --blue:#168bff;
+  --text:#f3f7ff;
+  --muted:#9cabc2;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial,sans-serif;
+}
+header {
+  text-align:center;
+  padding:25px 12px;
+  background:linear-gradient(130deg,#071a35,#102e60);
+  border-bottom:2px solid var(--blue);
+}
+.logo {
+  font-size:clamp(23px,6vw,34px);
+  font-weight:900;
+  color:#45aaff;
+}
+header p { font-size:12px;color:#c3d8f5; }
+nav {
+  display:flex;
+  gap:7px;
+  justify-content:center;
+  flex-wrap:wrap;
+  padding:12px;
+}
+button,.btn {
+  border:0;
+  border-radius:9px;
+  padding:11px 13px;
+  background:var(--blue);
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+  text-decoration:none;
+  font-size:14px;
+}
+nav button { background:#17243a; }
+nav button.active { background:var(--blue); }
+main { max-width:1000px;margin:auto;padding:12px; }
+.search,input,select,textarea {
+  width:100%;
+  padding:13px;
+  border-radius:9px;
+  border:1px solid #30435e;
+  background:#0b1322;
+  color:white;
+  font-size:15px;
+}
+h2 { font-size:20px;margin:23px 0 12px; }
+.grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+.card {
+  background:var(--panel);
+  border:1px solid #223550;
+  border-radius:13px;
+  overflow:hidden;
+  min-width:0;
+}
+.thumb {
+  width:100%;
+  aspect-ratio:16/9;
+  object-fit:cover;
+  display:block;
+  background:#17243a;
+}
+.cardbody { padding:12px; }
+.tag { font-size:11px;color:#70baff;font-weight:bold; }
+.card h3 { font-size:16px;margin:8px 0;overflow-wrap:anywhere; }
+.desc { font-size:13px;color:var(--muted);line-height:1.5; }
+.actions { display:flex;gap:7px;flex-wrap:wrap;margin-top:12px; }
+.secondary { background:#263650; }
+.danger { background:#b52d40; }
+.notice {
+  background:#102440;
+  border-left:3px solid var(--blue);
+  padding:12px;
+  border-radius:7px;
+  font-size:13px;
+  line-height:1.6;
+  margin:12px 0;
+}
+.hidden { display:none !important; }
+form { display:grid;gap:10px; }
+.playerbox {
+  background:#000;
+  border:1px solid #263650;
+  border-radius:12px;
+  overflow:hidden;
+  margin:12px 0;
+}
+.playerbox video,.playerbox iframe {
+  width:100%;
+  aspect-ratio:16/9;
+  display:block;
+  border:0;
+  background:#000;
+}
+.playerinfo { padding:12px; }
+.empty { color:var(--muted);padding:25px 8px;text-align:center; }
+footer { text-align:center;color:var(--muted);padding:25px 12px;font-size:12px; }
+@media(min-width:650px) {
+  .grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+}
+@media(max-width:360px) {
+  .grid { grid-template-columns:1fr; }
+}
 </style>
 </head>
+
 <body>
+
 <header>
   <div class="logo">𝙲𝚁𝙸𝙲 𝚉𝙾𝙽𝙴 7𝚃5</div>
   <p>CRICKET CLIPS • VIDEO PLAYER • LIVE MATCH</p>
@@ -54,4 +142,367 @@ footer{text-align:center;color:var(--muted);padding:25px 12px;font-size:12px}
 </nav>
 
 <main>
+
   <div id="playerArea" class="hidden"></div>
+
+  <section id="homePage">
+    <input id="searchBox" class="search"
+      type="search" placeholder="🔎 Search cricket videos...">
+
+    <h2>🏏 Cricket Videos</h2>
+    <div id="videoGrid" class="grid"></div>
+
+    <h2>🔴 Live Match Links</h2>
+    <div id="liveGrid" class="grid"></div>
+  </section>
+
+  <section id="clipsPage" class="hidden">
+    <h2>🎬 Cricket Clips</h2>
+    <div id="clipsGrid" class="grid"></div>
+  </section>
+
+  <section id="livePage" class="hidden">
+    <h2>🔴 Live Match</h2>
+    <div class="notice">
+      এখানে তোমার যোগ করা লাইভ ম্যাচের লিংকগুলো দেখা যাবে।
+    </div>
+    <div id="liveOnlyGrid" class="grid"></div>
+  </section>
+
+  <section id="addPage" class="hidden">
+    <h2>➕ Add Video / Live Link</h2>
+
+    <div class="notice">
+      ভিডিও যোগ করতে একটি নাম ও YouTube ভিডিও লিংক দাও।
+      Thumbnail URL ঐচ্ছিক। লিংকগুলো এই ব্রাউজারের Local Storage-এ
+      সেভ হবে; অন্য ফোনে নিজে থেকে দেখা যাবে না।
+    </div>
+
+    <form id="addForm">
+      <label for="itemType">Select Type</label>
+      <select id="itemType">
+        <option value="video">Cricket Video / Clip</option>
+        <option value="live">Live Match Link</option>
+      </select>
+
+      <input id="itemTitle" type="text"
+        placeholder="Video title" required>
+
+      <input id="itemUrl" type="url"
+        placeholder="YouTube or video link" required>
+
+      <input id="itemThumb" type="url"
+        placeholder="Thumbnail image URL (optional)">
+
+      <textarea id="itemDesc" rows="3"
+        placeholder="Short description (optional)"></textarea>
+
+      <button type="submit">➕ ADD TO WEBSITE</button>
+    </form>
+  </section>
+
+</main>
+
+<footer>
+  <div>🏏 CRIC ZONE 7T5</div>
+  <p>Cricket videos and live match links</p>
+</footer>
+
+<script>
+const STORAGE_KEY = "cricZone7t5Items";
+
+let items = [];
+
+try {
+  items = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+  if (!Array.isArray(items)) items = [];
+} catch (error) {
+  items = [];
+}
+
+let currentPage = "all";
+
+const $ = id => document.getElementById(id);
+
+function saveItems() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+  } catch (error) {
+    alert("Storage full. কিছু পুরোনো লিংক মুছে আবার চেষ্টা করো।");
+  }
+}
+
+function escapeHTML(value) {
+  return String(value || "").replace(/[&<>"']/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  })[char]);
+}
+
+function safeUrl(value) {
+  try {
+    const url = new URL(value);
+    if (url.protocol === "https:" || url.protocol === "http:") {
+      return url.href;
+    }
+  } catch (error) {}
+  return "";
+}
+
+function getYouTubeId(url) {
+  try {
+    const u = new URL(url);
+    let id = "";
+
+    if (u.hostname.includes("youtu.be")) {
+      id = u.pathname.split("/").filter(Boolean)[0] || "";
+    } else if (
+      u.hostname.includes("youtube.com") ||
+      u.hostname.includes("youtube-nocookie.com")
+    ) {
+      if (u.pathname === "/watch") {
+        id = u.searchParams.get("v") || "";
+      } else {
+        const parts = u.pathname.split("/").filter(Boolean);
+        if (["embed", "shorts", "live"].includes(parts[0])) {
+          id = parts[1] || "";
+        }
+      }
+    }
+
+    return /^[a-zA-Z0-9_-]{11}$/.test(id) ? id : "";
+  } catch (error) {
+    return "";
+  }
+}
+
+function thumbnailFor(item) {
+  const supplied = safeUrl(item.thumb || "");
+  if (supplied) return supplied;
+
+  const id = getYouTubeId(item.url);
+  if (id) return "https://i.ytimg.com/vi/" + id + "/hqdefault.jpg";
+
+  return "";
+}
+
+function openItem(index) {
+  const item = items[index];
+  if (!item) return;
+
+  const url = safeUrl(item.url);
+  if (!url) {
+    alert("এই লিংকটি সঠিক নয়।");
+    return;
+  }
+
+  if (item.type === "live") {
+    window.open(url, "_blank", "noopener,noreferrer");
+    return;
+  }
+
+  const id = getYouTubeId(url);
+  const area = $("playerArea");
+
+  if (id) {
+    area.innerHTML = `
+      <div class="playerbox">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1"
+          title="${escapeHTML(item.title)}"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+        <div class="playerinfo">
+          <h3>${escapeHTML(item.title)}</h3>
+          <p class="desc">${escapeHTML(item.desc || "")}</p>
+          <button class="secondary" onclick="closePlayer()">✖ CLOSE PLAYER</button>
+        </div>
+      </div>`;
+    area.classList.remove("hidden");
+    area.scrollIntoView({ behavior:"smooth", block:"start" });
+  } else if (/\.(mp4|webm|ogg)(\?.*)?$/i.test(url)) {
+    area.innerHTML = `
+      <div class="playerbox">
+        <video controls autoplay playsinline>
+          <source src="${escapeHTML(url)}">
+          Your browser does not support video playback.
+        </video>
+        <div class="playerinfo">
+          <h3>${escapeHTML(item.title)}</h3>
+          <button class="secondary" onclick="closePlayer()">✖ CLOSE PLAYER</button>
+        </div>
+      </div>`;
+    area.classList.remove("hidden");
+    area.scrollIntoView({ behavior:"smooth", block:"start" });
+  } else {
+    window.open(url, "_blank", "noopener,noreferrer");
+  }
+}
+
+function closePlayer() {
+  $("playerArea").innerHTML = "";
+  $("playerArea").classList.add("hidden");
+}
+
+function makeCard(item, index) {
+  const thumb = thumbnailFor(item);
+  const image = thumb
+    ? `<img class="thumb" src="${escapeHTML(thumb)}" alt=""
+         loading="lazy" onerror="this.style.display='none'">`
+    : `<div class="thumb"></div>`;
+
+  const action = item.type === "live"
+    ? "🔴 OPEN LIVE LINK"
+    : "▶️ PLAY VIDEO";
+
+  return `
+    <article class="card">
+      ${image}
+      <div class="cardbody">
+        <div class="tag">
+          ${item.type === "live" ? "🔴 LIVE MATCH" : "🏏 CRICKET CLIP"}
+        </div>
+        <h3>${escapeHTML(item.title)}</h3>
+        <div class="desc">${escapeHTML(item.desc || "Cricket • CRIC ZONE 7T5")}</div>
+        <div class="actions">
+          <button onclick="openItem(${index})">${action}</button>
+          <button class="secondary" onclick="shareItem(${index})">↗ SHARE</button>
+          <button class="danger" onclick="deleteItem(${index})">DELETE</button>
+        </div>
+      </div>
+    </article>`;
+}
+
+function renderGrid(targetId, list) {
+  const target = $(targetId);
+
+  if (!list.length) {
+    target.innerHTML = `<div class="empty">এখনো কোনো লিংক যোগ করা হয়নি।<br>ADD VIDEO থেকে লিংক যোগ করো।</div>`;
+    return;
+  }
+
+  target.innerHTML = list
+    .map(item => makeCard(item.item, item.index))
+    .join("");
+}
+
+function getIndexedItems(type, query = "") {
+  const q = query.toLowerCase().trim();
+
+  return items
+    .map((item, index) => ({ item, index }))
+    .filter(({ item }) => !type || item.type === type)
+    .filter(({ item }) =>
+      !q ||
+      (item.title || "").toLowerCase().includes(q) ||
+      (item.desc || "").toLowerCase().includes(q)
+    );
+}
+
+function renderAll() {
+  const query = $("searchBox").value;
+
+  renderGrid("videoGrid", getIndexedItems("video", query));
+  renderGrid("liveGrid", getIndexedItems("live", query));
+  renderGrid("clipsGrid", getIndexedItems("video", query));
+  renderGrid("liveOnlyGrid", getIndexedItems("live", query));
+}
+
+function showPage(page) {
+  currentPage = page;
+  closePlayer();
+
+  const sections = {
+    all: "homePage",
+    clips: "clipsPage",
+    live: "livePage",
+    add: "addPage"
+  };
+
+  Object.values(sections).forEach(id => $(id).classList.add("hidden"));
+  $(sections[page] || "homePage").classList.remove("hidden");
+
+  document.querySelectorAll("nav button").forEach(button => {
+    button.classList.toggle("active", button.dataset.page === page);
+  });
+
+  renderAll();
+  window.scrollTo({ top:0, behavior:"smooth" });
+}
+
+document.querySelectorAll("nav button").forEach(button => {
+  button.addEventListener("click", () => showPage(button.dataset.page));
+});
+
+$("searchBox").addEventListener("input", renderAll);
+
+$("addForm").addEventListener("submit", event => {
+  event.preventDefault();
+
+  const title = $("itemTitle").value.trim();
+  const url = safeUrl($("itemUrl").value.trim());
+  const thumbInput = $("itemThumb").value.trim();
+  const thumb = thumbInput ? safeUrl(thumbInput) : "";
+  const desc = $("itemDesc").value.trim();
+  const type = $("itemType").value;
+
+  if (!title || !url) {
+    alert("সঠিক নাম ও URL দাও।");
+    return;
+  }
+
+  if (thumbInput && !thumb) {
+    alert("Thumbnail URL সঠিক নয়।");
+    return;
+  }
+
+  items.unshift({
+    title,
+    url,
+    thumb,
+    desc,
+    type,
+    createdAt: Date.now()
+  });
+
+  saveItems();
+  $("addForm").reset();
+  showPage(type === "live" ? "live" : "clips");
+  alert("লিংক যোগ হয়েছে!");
+});
+
+function deleteItem(index) {
+  if (!confirm("এই লিংকটি মুছে ফেলতে চাও?")) return;
+
+  items.splice(index, 1);
+  saveItems();
+  renderAll();
+}
+
+function shareItem(index) {
+  const item = items[index];
+  if (!item) return;
+
+  const text = item.title + "\n" + item.url;
+
+  if (navigator.share) {
+    navigator.share({ title:item.title, text, url:item.url })
+      .catch(() => {});
+  } else if (navigator.clipboard) {
+    navigator.clipboard.writeText(text)
+      .then(() => alert("লিংক কপি হয়েছে!"))
+      .catch(() => alert(text));
+  } else {
+    alert(text);
+  }
+}
+
+renderAll();
+</script>
+
+</body>
+</html>
