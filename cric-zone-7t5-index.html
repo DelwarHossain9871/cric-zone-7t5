@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#061b18">
+<title>CRIC ZONE 7T5 — Live Recorder</title>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
+<style>
+:root{--bg:#03110e;--panel:#071b17;--green:#27ffb0;--cyan:#00f5e9;--pink:#ff1760;--muted:#9abdb2}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at top,#0a302c 0,#03110e 55%,#010806 100%);color:#eafff8;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;padding:18px 14px 32px}
+.wrap{max-width:760px;margin:auto}
+header{text-align:center;color:var(--green);font-family:ui-monospace,monospace;font-size:clamp(22px,5vw,36px);font-weight:800;letter-spacing:1px;text-shadow:0 0 10px #00ffb4,0 0 24px #00c99a;margin:8px 0 22px}
+.terminal{border:1px solid #1aff9b;border-radius:18px;padding:14px;background:#031307;box-shadow:0 0 16px #00ff7330,inset 0 0 20px #00ff7310}
+input{width:100%;min-width:0;background:#071a15;color:#fff;border:1px solid #25e99e;border-radius:12px;padding:16px 14px;font-size:15px;outline:none;box-shadow:0 0 12px #00ff6a22}
+input::placeholder{color:#8bb8a8}
+.buttons{display:grid;gap:12px;margin:14px 0}
+button{border:1px solid var(--green);border-radius:14px;background:#041708;color:var(--green);padding:17px 10px;font-size:clamp(17px,4vw,24px);font-weight:800;cursor:pointer;box-shadow:0 0 15px #00ff7a22;letter-spacing:.3px}
+button:active{transform:scale(.99)}
+#playBtn{border-color:#24ffc1}
+#recBtn{border-color:var(--pink);color:var(--pink);box-shadow:0 0 15px #ff176022}
+#stopBtn{border-color:#b9d5cd;color:#eafff8}
+.playerbox{border:1px solid #27ffb0;border-radius:16px;overflow:hidden;background:#000;box-shadow:0 0 18px #00ff7330;margin-top:16px;min-height:180px}
+video{display:block;width:100%;max-height:62vh;aspect-ratio:16/9;background:#000;object-fit:contain}
+.status{color:var(--green);font-family:ui-monospace,monospace;font-size:14px;line-height:1.5;margin:14px 2px 0;overflow-wrap:anywhere}
+.notes{font-family:ui-monospace,monospace;color:var(--muted);font-size:13px;line-height:1.7;margin-top:12px}
+a{color:var(--cyan)}
+@media(min-width:600px){body{padding-top:26px}.terminal{padding:22px}.buttons{gap:14px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>[ CRIC ZONE 7T5 :: LIVE TERMINAL ]</header>
+<div class="terminal">
+<input id="streamUrl" type="url" placeholder="এখানে অনুমোদিত ভিডিও / M3U8 / MP4 লিংক দাও" autocomplete="url">
+<div class="buttons">
+<button id="playBtn">▶ EXECUTE STREAM</button>
+<button id="recBtn">● START REC</button>
+<button id="stopBtn">■ STOP &amp; SAVE</button>
+</div>
+<div class="playerbox"><video id="player" controls playsinline crossorigin="anonymous"></video></div>
+<div id="status" class="status">READY — একটি সরাসরি ভিডিও লিংক দিয়ে EXECUTE STREAM চাপো।</div>
+<div class="notes">STREAM PLAYER READY<br>HLS (.m3u8) → HLS.js / browser support<br>REC → browser permission and source support required</div>
+</div>
+</div>
+<script>
+(() => {
+ const input=document.getElementById('streamUrl');
+ const video=document.getElementById('player');
+ const status=document.getElementById('status');
+ let hls=null, recorder=null, chunks=[];
+ const setStatus=s=>status.textContent=s;
+ function stopHls(){if(hls){hls.destroy();hls=null;}}
+ function playStream(){
+  const url=input.value.trim();
+  if(!url){setStatus('আগে একটি ভিডিও লিংক দাও।');return;}
+  let parsed;try{parsed=new URL(url);if(!['http:','https:'].includes(parsed.protocol))throw 0;}catch(e){setStatus('সঠিক http/https লিংক দাও।');return;}
+  stopHls();video.pause();video.removeAttribute('src');video.load();
+  if(/\.m3u8(?:$|\?)/i.test(url)){
+   if(window.Hls && Hls.isSupported()){
+    hls=new Hls();
+    hls.loadSource(url);hls.attachMedia(video);
+    hls.on(Hls.Events.MANIFEST_PARSED,()=>setStatus('স্ট্রিম লোড হয়েছে। Play চাপো।'));
+    hls.on(Hls.Events.ERROR,(ev,data)=>{if(data.fatal)setStatus('স্ট্রিম চালানো যায়নি। লিংক মেয়াদোত্তীর্ণ, CORS/সার্ভার ব্লক, বা অনুমতি সমস্যা হতে পারে।');});
+   }else if(video.canPlayType('application/vnd.apple.mpegurl')){video.src=url;}
+   else {setStatus('এই ব্রাউজারে HLS সাপোর্ট নেই।');return;}
+  }else{video.src=url;}
+  video.play().then(()=>setStatus('ভিডিও চলছে।')).catch(()=>setStatus('ভিডিও লোড হচ্ছে। Play চাপো বা লিংক/সার্ভার পরীক্ষা করো।'));
+ }
+ function startRecording(){
+  if(!video.src && !hls){setStatus('আগে ভিডিও চালু করো।');return;}
+  if(!video.captureStream && !video.mozCaptureStream){setStatus('এই ব্রাউজার ভিডিও রেকর্ডিং সমর্থন করছে না।');return;}
+  try{
+   const stream=(video.captureStream||video.mozCaptureStream).call(video);
+   if(!stream.getVideoTracks().length){setStatus('ভিডিও স্ট্রিম পাওয়া যায়নি। আগে ভিডিও চালাও।');return;}
+   chunks=[];
+   const mime=['video/webm;codecs=vp9,opus','video/webm;codecs=vp8,opus','video/webm'].find(t=>MediaRecorder.isTypeSupported(t));
+   recorder=new MediaRecorder(stream,mime?{mimeType:mime}:{});
+   recorder.ondataavailable=e=>{if(e.data&&e.data.size)chunks.push(e.data);};
+   recorder.onerror=()=>setStatus('রেকর্ডিং ব্যর্থ হয়েছে।');
+   recorder.onstop=()=>{
+    if(!chunks.length){setStatus('রেকর্ডিং ফাইল তৈরি হয়নি। এই স্ট্রিম রেকর্ড করা নাও যেতে পারে.');return;}
+    const blob=new Blob(chunks,{type:recorder.mimeType||'video/webm'});
+    const obj=URL.createObjectURL(blob),a=document.createElement('a');
+    a.href=obj;a.download='CRIC-ZONE-7T5-clip.webm';a.click();
+    setStatus('রেকর্ডিং সেভ হয়েছে (যদি ব্রাউজার ডাউনলোড অনুমতি দেয়)।');
+    setTimeout(()=>URL.revokeObjectURL(obj),60000);
+   };
+   recorder.start();setStatus('● রেকর্ডিং চলছে… STOP & SAVE চাপো।');
+  }catch(e){setStatus('REC শুরু হয়নি: ব্রাউজার বা ভিডিও সোর্স রেকর্ডিং ব্লক করতে পারে।');}
+ }
+ function stopRecording(){
+  if(recorder&&recorder.state==='recording'){recorder.stop();return;}
+  setStatus('এখন কোনো রেকর্ডিং চলছে না।');
+ }
+ document.getElementById('playBtn').addEventListener('click',playStream);
+ document.getElementById('recBtn').addEventListener('click',startRecording);
+ document.getElementById('stopBtn').addEventListener('click',stopRecording);
+})();
+</script>
+</body>
+</html>
